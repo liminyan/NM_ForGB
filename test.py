@@ -37,7 +37,6 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 		model_save_path = saved_model_path,
 		bias = bias)
 	Tr = TrainData.TrainData(ensemble_nums= 32 * 3 + 1, lats=180, lons=360)
-	print(path)
 	svr = Model.SupportVectorRegression()
 	proxy = PostProcessor.PostProcessor(Tr, svr)
 	teg = bias + str(tar)+str(lev)+str(div)
