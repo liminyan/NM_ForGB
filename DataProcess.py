@@ -223,7 +223,7 @@ def get_train_npy_from_nc_min_size(
 	train_data = []
 	train_label = []
 
-	x = batch_epc + 1   
+	x = batch_epc
 	# for x in range(batch_num * batch_epc, batch_num * (batch_epc + 1)):
 	print('>>',train_data_path+file[x],'>>',file[x])
 	dataset = nc.Dataset(train_data_path+file[x])
