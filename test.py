@@ -10,7 +10,24 @@ import time
 import pickle
 import sys
 
-def test_train(tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 2):
+def set_input_m(tar,model = None,lev = 32,div = 1,num = 16,bias = "",model_save_path = '/share1/liminyan/model'):
+	print('model:',model)
+	s = time.time()
+	if tar == 'phs':
+		lev = 0
+
+	if model == 'self':
+		path = model_save_path + '/'+bias+tar+'_'+str(block_num) +'_'+str(lev)+'_self.npy'
+	elif model == 'merge_uv' :
+		path = model_save_path + '/'+bias+tar+'_'+str(block_num) +'_'+str(lev)+'_mergeuv.npy'
+	else:
+		path = model_save_path + '/'+bias+tar+'_'+str(block_num) +'_'+str(lev)+'.npy'
+
+	e = time.time()
+	print('set_input time',e - s)
+	return path
+
+def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 2):
 	
 	comm = MPI.COMM_WORLD
 	comm_rank = comm.Get_rank()

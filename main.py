@@ -58,7 +58,7 @@ def show_res(tar,block_num,lev,results,num,model = None):
 	func.draw(list(results[0:num]),tar)
 	np.save(tar+'sub_res.npy',results[0:num])
 
-def train_model(tar,lev,div,batch_epc = 16,bias = '',num = 2):
+def train_model(file,tar,lev,div,batch_epc = 16,bias = '',num = 2):
 	
 	comm = MPI.COMM_WORLD
 	comm_rank = comm.Get_rank()
@@ -114,21 +114,7 @@ def train_model(tar,lev,div,batch_epc = 16,bias = '',num = 2):
 			else: 
 				proxy.partial_fit('mlp')
 
-			# proxy.predict()
 			print('rank',comm_rank,'total time',e-begin)
-			print(teg)
-			
-			# if comm_rank == 0:
-			# 	# print(proxy.calRMSE())
-			# 	results = proxy.getResults()
-			# 	label_y = Tr.y_test
-			# 	for x in range(num):
-			# 		merge=np.c_[results[x],label_y[x]]
-			# 		test.append(merge)
-			# 	get_mean('Prc',results[:num])
-			# 	get_mean('Org',label_y[:num])
-			# 	np.save('predic'+'/'+teg+'.npy',results[:num])
-
 			del Train_x
 			del	Train_y
 
@@ -266,10 +252,10 @@ if __name__ == '__main__':
 	model = 'mlp'
 	print('...:',model)
 	proxy = None
-#	proxy = train_model(tar,lev,div,bias = model)
+#	proxy = train_model(file,tar,lev,div,bias = model)
 	# pre_model(tar,lev,div,bias = model,proxy = proxy)
 
-	Test.test_train(tar,lev,div,bias = model)
+	Test.test_train(file,tar,lev,div,bias = model)
 
 
 
