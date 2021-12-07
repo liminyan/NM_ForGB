@@ -8,6 +8,8 @@ import mpi4py.MPI as MPI
 lev_l = {}
 lev_l['u'] = 32
 lev_l['v'] = 32
+lev_l['u_Agrid'] = 32
+lev_l['v_Agrid'] = 32
 lev_l['pt'] = 32
 lev_l['phs'] = 1
 
