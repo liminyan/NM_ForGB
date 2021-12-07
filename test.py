@@ -44,6 +44,7 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 	if comm_rank == 0:
 		test = []
 
+	begin = time.time()
 	for ite in range(2):
 		Train_x,Train_y, = DP.get_train_npy_from_nc_min_size(
 			file,
