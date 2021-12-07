@@ -25,7 +25,7 @@ def set_input_m(tar,model = None,lev = 32,div = 1,num = 16,bias = "",model_save_
 	print('set_input time',e - s)
 	return path
 
-def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 2):
+def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 2,saved_model_path = saved_model_path):
 	
 	comm = MPI.COMM_WORLD
 	comm_rank = comm.Get_rank()
