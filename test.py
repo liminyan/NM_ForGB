@@ -62,7 +62,7 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 
 		# Train_x = Train_x[:-div]
 		# Train_y = Train_y[div:]
-
+		print(div)
 		print(Train_x.shape)
 		print(Train_y.shape)
 
@@ -76,12 +76,14 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 		e = time.time()
 
 
-		# if bias == 'svr':
-		# 	proxy.fit()
-		# elif bias == 'line':				
-		# 	proxy.partial_fit('line')
-		# else: 
-		# 	proxy.partial_fit('mlp')
+		print('train')
+		
+		if bias == 'svr':
+			proxy.fit()
+		elif bias == 'line':				
+			proxy.partial_fit('line')
+		else: 
+			proxy.partial_fit('mlp')
 
 		print('rank',comm_rank,'total time',e-begin)
 		del Train_x
