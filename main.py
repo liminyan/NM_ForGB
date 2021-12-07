@@ -9,8 +9,7 @@ import mpi4py.MPI as MPI
 import time
 import pickle
 import sys
-
-
+import Test
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -270,7 +269,7 @@ if __name__ == '__main__':
 #	proxy = train_model(tar,lev,div,bias = model)
 	# pre_model(tar,lev,div,bias = model,proxy = proxy)
 
-	Test.test_train()
+	Test.test_train(tar,lev,div,bias = model)
 
 
 
