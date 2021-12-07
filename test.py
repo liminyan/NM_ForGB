@@ -49,7 +49,7 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 			file,
 			tar_l,
 			train_data_path,
-			batch_epc=x,
+			batch_epc=1,
 			lev = lev,
 			labe = tar,
 			save_path = saved_data_path,
