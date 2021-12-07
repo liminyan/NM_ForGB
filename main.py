@@ -274,7 +274,7 @@ if __name__ == '__main__':
 	model = 'mlp'
 	print('...:',model)
 	proxy = None
-	proxy = train_model(tar,lev,div,bias = model)
+#	proxy = train_model(tar,lev,div,bias = model)
 	pre_model(tar,lev,div,bias = model,proxy = proxy)
 
 
