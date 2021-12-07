@@ -60,8 +60,8 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 		Train_x = np.array(Train_x).astype(np.float64)
 		Train_y = np.array(Train_y).astype(np.float64)
 
-		Train_x = Train_x[:-div]
-		Train_y = Train_y[div:]
+		# Train_x = Train_x[:-div]
+		# Train_y = Train_y[div:]
 
 		print(Train_x.shape)
 		print(Train_y.shape)

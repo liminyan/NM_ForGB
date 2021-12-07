@@ -232,7 +232,7 @@ def get_train_npy_from_nc_min_size(
 		print(dataset.variables[tar_list[tar]].shape)
 
 		lev_range = lev_l[tar_list[tar]]
-		half_num = int(dataset.variables[tar_list[tar]].shape[0]/2)
+		half_num =  int(dataset.variables[tar_list[tar]].shape[0]/2)
 		# half_num = int(dataset.variables[tar_list[tar]].shape[0])
 		# half_num = 50
 		half_num_begin = num*half_num
