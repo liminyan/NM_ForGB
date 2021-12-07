@@ -15,14 +15,12 @@ def set_input_m(tar,model = None,lev = 32,div = 1,num = 16,bias = "",model_save_
 	s = time.time()
 	if tar == 'phs':
 		lev = 0
-
 	if model == 'self':
 		path = model_save_path + '/'+bias+tar+'_'+str(block_num) +'_'+str(lev)+'_self.npy'
 	elif model == 'merge_uv' :
 		path = model_save_path + '/'+bias+tar+'_'+str(block_num) +'_'+str(lev)+'_mergeuv.npy'
 	else:
 		path = model_save_path + '/'+bias+tar+'_'+str(block_num) +'_'+str(lev)+'.npy'
-
 	e = time.time()
 	print('set_input time',e - s)
 	return path
@@ -40,15 +38,12 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 		bias = bias)
 	Tr = TrainData.TrainData(ensemble_nums= 32 * 3 + 1, lats=180, lons=360)
 	print(path)
-
 	svr = Model.SupportVectorRegression()
 	proxy = PostProcessor.PostProcessor(Tr, svr)
-
 	teg = bias + str(tar)+str(lev)+str(div)
-
 	if comm_rank == 0:
 		test = []
-
+	print(file)
 	# for x in range(batch_epc):
 	# 	for ite in range(2):
 	# 		Train_x,Train_y, = DP.get_train_npy_from_nc_min_size(
