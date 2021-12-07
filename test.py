@@ -30,7 +30,7 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 	comm = MPI.COMM_WORLD
 	comm_rank = comm.Get_rank()
 	comm_size = comm.Get_size()
-	tar_l = ['phs','pt','u','v']
+	tar_l = ['phs','pt','u_Agrid','v_Agrid']
 	num = 10
 	path = set_input_m(tar,
 		model = '',lev = lev,div = div,num = num,
@@ -77,7 +77,7 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 
 
 		print('train')
-		
+
 		if bias == 'svr':
 			proxy.fit()
 		elif bias == 'line':				
