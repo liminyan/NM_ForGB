@@ -255,7 +255,7 @@ if __name__ == '__main__':
 #	proxy = train_model(file,tar,lev,div,bias = model)
 	# pre_model(tar,lev,div,bias = model,proxy = proxy)
 
-	Test.test_train(file,tar,lev,div,bias = model)
+	test.test_train(file,tar,lev,div,bias = model)
 
 
 
