@@ -229,6 +229,8 @@ def get_train_npy_from_nc_min_size(
 	dataset = nc.Dataset(train_data_path+file[x])
 	merge = []
 	for tar in range(len(tar_list)):
+		print(dataset.variables[tar_list[tar]].shape)
+
 		lev_range = lev_l[tar_list[tar]]
 		half_num = int(dataset.variables[tar_list[tar]].shape[0]/2)
 		# half_num = int(dataset.variables[tar_list[tar]].shape[0])
