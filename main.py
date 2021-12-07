@@ -9,7 +9,7 @@ import mpi4py.MPI as MPI
 import time
 import pickle
 import sys
-import Test
+import test
 import warnings
 warnings.filterwarnings("ignore")
 
