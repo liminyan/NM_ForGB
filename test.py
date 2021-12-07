@@ -9,7 +9,6 @@ import mpi4py.MPI as MPI
 import time
 import pickle
 import sys
-import Test
 
 def test_train(tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 2):
 	
