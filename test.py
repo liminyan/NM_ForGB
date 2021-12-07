@@ -43,48 +43,5 @@ def test_train(file,tar = 'v',lev ='31',div = '1',batch_epc = 1,bias = '',num = 
 	teg = bias + str(tar)+str(lev)+str(div)
 	if comm_rank == 0:
 		test = []
-	print(file)
-	# for x in range(batch_epc):
-	# 	for ite in range(2):
-	# 		Train_x,Train_y, = DP.get_train_npy_from_nc_min_size(
-	# 			file,
-	# 			tar_l,
-	# 			train_data_path,
-	# 			batch_epc=x,
-	# 			lev = lev,
-	# 			labe = tar,
-	# 			save_path = saved_data_path,
-	# 			num= ite
-	# 			)
-
-	# 		Train_x = np.array(Train_x).astype(np.float64)
-	# 		Train_y = np.array(Train_y).astype(np.float64)
-
-	# 		Train_x = Train_x[:-div]
-	# 		Train_y = Train_y[div:]
-
-	# 		Tr.loadData(from_path=False,
-	# 			x_train = Train_x,
-	# 			y_train = Train_y,
-	# 			x_test = Train_x[:num],
-	# 			y_test = Train_y[:num])
-
-	# 		e = time.time()
-	# 		if bias == 'svr':
-	# 			proxy.fit()
-	# 		elif bias == 'line':				
-	# 			proxy.partial_fit('line')
-	# 		else: 
-	# 			proxy.partial_fit('mlp')
-	# 		print('rank',comm_rank,'total time',e-begin)
-	# 		del Train_x
-	# 		del	Train_y
-
-	# if comm_rank == 0:
-	# 	s = time.time()
-	# 	func.draw(list(test) ,'test',teg = teg )
-	# 	e = time.time()
-	# 	print('draw time',e - s)
-	# proxy.save(path)
-
+	
 	return proxy
