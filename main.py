@@ -255,7 +255,8 @@ if __name__ == '__main__':
 #	proxy = train_model(file,tar,lev,div,bias = model)
 	# pre_model(tar,lev,div,bias = model,proxy = proxy)
 
-	test.test_train(file,tar,lev,div,bias = model,saved_model_path = saved_model_path)
+	testfile = ['mpas.360x180.test_Agrid.l32.h0_000001.nc']
+	test.test_train(testfile,tar,lev,div,bias = model,saved_model_path = saved_model_path)
 
 
 
