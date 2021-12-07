@@ -59,7 +59,6 @@ def show_res(tar,block_num,lev,results,num,model = None):
 	func.draw(list(results[0:num]),tar)
 	np.save(tar+'sub_res.npy',results[0:num])
 
-
 def train_model(tar,lev,div,batch_epc = 16,bias = '',num = 2):
 	
 	comm = MPI.COMM_WORLD
@@ -102,24 +101,18 @@ def train_model(tar,lev,div,batch_epc = 16,bias = '',num = 2):
 			Train_x = Train_x[:-div]
 			Train_y = Train_y[div:]
 
-			print(Train_x.shape,Train_y.shape)
-
 			Tr.loadData(from_path=False,
 				x_train = Train_x,
 				y_train = Train_y,
 				x_test = Train_x[:num],
 				y_test = Train_y[:num])
 
-			Tr.show()
-		# 	# proxy.load(path) #180*360 / size 
-		# 	# 每个进程少部分模型，他自己的数据，
 			e = time.time()
 			if bias == 'svr':
 				proxy.fit()
 			elif bias == 'line':				
 				proxy.partial_fit('line')
 			else: 
-				# bias == 'mlp':				
 				proxy.partial_fit('mlp')
 
 			# proxy.predict()
@@ -163,8 +156,6 @@ def get_line(tar,lev):
 
 	if tar == 'v':
 		return 1 + 32 + 32 + lev
-
-
 
 def pre_model(tar,lev,div,batch_epc = 1,bias = '',proxy = None):
 	comm = MPI.COMM_WORLD
@@ -224,7 +215,8 @@ def pre_model(tar,lev,div,batch_epc = 1,bias = '',proxy = None):
 		e = time.time()
 		print('rank',comm_rank,'total time',e-begin)
 		if comm_rank == 0:
-			print(proxy.calRMSE())
+			# print(proxy.calRMSE())
+			print('sove data')
 			results = proxy.getResults()
 			label_y = Tr.y_test
 			for x in range(num):
@@ -245,7 +237,8 @@ def pre_model(tar,lev,div,batch_epc = 1,bias = '',proxy = None):
 		func.draw(list(test) ,'test',teg = teg+'again')
 		e = time.time()
 		print('draw time',e - s)
-	# proxy.save(path)
+
+
 
 train_data_path = '/home/xuewei/ddn/share/svr_data/'
 saved_data_path = '/share1/liminyan/save_data/'
@@ -254,7 +247,7 @@ output_path = 'Data/'
 block_num = 1
 file = DP.get_nc_from_file(train_data_path)
 file.sort()
-
+file = [x for x in file if '.nc' in x]
 
 if __name__ == '__main__':
 
@@ -275,8 +268,9 @@ if __name__ == '__main__':
 	print('...:',model)
 	proxy = None
 #	proxy = train_model(tar,lev,div,bias = model)
-	pre_model(tar,lev,div,bias = model,proxy = proxy)
+	# pre_model(tar,lev,div,bias = model,proxy = proxy)
 
+	Test.test_train()
 
 
 
