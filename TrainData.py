@@ -69,16 +69,16 @@ class TrainData(object):
             # return self
 
         else:
-            if type(x_train) is np.ndarray:
+            if type(x_train) is np.ndarray :
                 self.x_train = x_train
                 self.data_label['x_train'] = 1
-            if type(x_train) is np.ndarray:
+            if type(y_train) is np.ndarray :
                 self.y_train = y_train
                 self.data_label['y_train'] = 1
-            if type(x_test) is np.ndarray:
+            if type(x_test) is np.ndarray or x_test.shape != None:
                 self.x_test = x_test
                 self.data_label['x_test'] = 1
-            if type(y_test) is np.ndarray:
+            if type(y_test) is np.ndarray or y_test.shape != None:
                 self.y_test = y_test
                 self.data_label['y_test'] = 1
             

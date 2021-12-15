@@ -8,8 +8,6 @@ import mpi4py.MPI as MPI
 lev_l = {}
 lev_l['u'] = 32
 lev_l['v'] = 32
-lev_l['u_Agrid'] = 32
-lev_l['v_Agrid'] = 32
 lev_l['pt'] = 32
 lev_l['phs'] = 1
 
@@ -173,8 +171,6 @@ def get_train_npy_from_nc(file,tar_list,train_data_path,from_file = False,save_p
 		for tar in range(len(tar_list)):
 			lev_range = lev_l[tar_list[tar]]
 			if lev_range!=1:
-
-
 				tar_res = dataset.variables[tar_list[tar]][0,:,i_begin:i_end]
 			else:
 				tar_res = dataset.variables[tar_list[tar]][:,i_begin:i_end]
@@ -203,11 +199,12 @@ def get_train_npy_from_nc_min_size(
 	labe = 'phs',
 	from_file = False,
 	save_path = 'Data/',
-	num = 1):
+	num = 1,
+	div_num = 2):
 
 	start = time.time()
 	d = [[] for x in range(len(tar_list))]
-	print(tar_list,len(d))
+	# print(tar_list,len(d))
 	input_data = []
 	comm = MPI.COMM_WORLD
 	comm_rank = comm.Get_rank()
@@ -225,21 +222,19 @@ def get_train_npy_from_nc_min_size(
 	train_data = []
 	train_label = []
 
-	x = batch_epc -1
+	x = batch_epc + 1   
 	# for x in range(batch_num * batch_epc, batch_num * (batch_epc + 1)):
-	print('>>',train_data_path+file[x],'>>',file[x])
+	# print('>>',train_data_path+file[x],'>>',file[x])
 	dataset = nc.Dataset(train_data_path+file[x])
 	merge = []
 	for tar in range(len(tar_list)):
-		print(dataset.variables[tar_list[tar]].shape)
-
 		lev_range = lev_l[tar_list[tar]]
-		half_num =  int(dataset.variables[tar_list[tar]].shape[0]/2)
+		half_num = int(dataset.variables[tar_list[tar]].shape[0]/div_num)
 		# half_num = int(dataset.variables[tar_list[tar]].shape[0])
-		# half_num = 50
+		print('half_num',half_num)
+		# half_num = 400
 		half_num_begin = num*half_num
 		half_num_end = half_num_begin+half_num
-
 		if lev_range == 1:
 			tar_res = None
 
@@ -331,12 +326,12 @@ def get_train_npy_from_nc_min_size(
 
 		merge.append(tar_res)
 
-	print(merge[0].shape,merge[1].shape,merge[2].shape,merge[3].shape)
+	# print(merge[0].shape,merge[1].shape,merge[2].shape,merge[3].shape)
 	# merge = np.r_[merge[0],merge[1],merge[2],merge[3]]
 	train_data = np.concatenate([merge[0],merge[1],merge[2],merge[3]],axis = 1)
 	# train_label = np.array(train_label)
-	print(labe,'train',train_data.shape)
-	print(labe,'labe',train_label.shape)
+	# print(labe,'train',train_data.shape)
+	# print(labe,'labe',train_label.shape)
 	elapsed = (time.time() - start)
 	print("Read time used:",round(elapsed,2))
 	return train_data,train_label

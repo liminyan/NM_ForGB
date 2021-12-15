@@ -13,9 +13,9 @@ lev_l['v'] = 32
 div = 1
 p = 20
 
-reset = 0
+reset = 0 
 
-for key in range(1,33):
+for key in range(0,97):
 	if key == 0:
 		tar = tar_l[0]
 		lev = 0
@@ -26,6 +26,11 @@ for key in range(1,33):
 	cmd = 'srun -n '+ str(p) +' /ddnstor/xuewei/3rdParty/anaconda3/bin/python3.7 -W ignore main.py'+ ' ' + str(tar) + ' ' + str(lev) + ' ' + str(div)
 	switch = "sed -i ' 4c " + cmd +"'" +  ' run.sh'
 	os.system(switch)
+
+	cmd = '#SBATCH -J ' + str(tar) + '_' + str(lev) + '_' + str(div)
+	switch = "sed -i ' 2c " + cmd +"'" +  ' run.sh'
+	os.system(switch)
+
 	if reset == 1:
 		f = open(str(key)+'.txt','w')
 		f.write('')
